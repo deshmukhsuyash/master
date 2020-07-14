@@ -1,0 +1,13 @@
+com\aa\socialmedia\service\serviceimpl\StudentServiceImp.class
+com\aa\socialmedia\repository\UserRepository.class
+com\aa\socialmedia\service\serviceimpl\User_Inovoice_Service_Imp.class
+com\aa\socialmedia\model\Inovoice.class
+com\aa\socialmedia\service\User_Inovoice_Service.class
+com\aa\socialmedia\repository\InovoiceRepository.class
+com\aa\socialmedia\model\Student.class
+com\aa\socialmedia\service\StudentService.class
+com\aa\socialmedia\InovoiceApplication.class
+com\aa\socialmedia\repository\StudentRepository.class
+com\aa\socialmedia\controller\Controller.class
+com\aa\socialmedia\model\User.class
+com\aa\socialmedia\controller\StudentController.class
