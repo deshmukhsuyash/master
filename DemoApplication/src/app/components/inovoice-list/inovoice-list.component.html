@@ -1,0 +1,31 @@
+
+<div class="container">
+  <h1>Inovoice List</h1>
+  <table class="table table-striped">
+
+    <thead>
+               <tr>
+                  <th>Inovoice Number</th>
+                  <th>Inovoice Total</th>
+                  <th>Bill type </th>
+                  <th>Bill Date </th>
+              </tr>
+
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let inovoice of inovoices ">
+                  <td>{{inovoice.inovoice_number}}</td>
+                  <td>{{inovoice.inovoice_total}}</td>
+                  <td>{{inovoice.bill_type}}</td>
+                  <td>{{inovoice.bill_date}}</td>
+         </tr> 
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
