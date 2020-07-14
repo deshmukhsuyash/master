@@ -1,8 +1,0 @@
-com\aa\socialmedia\controller\Controller.class
-com\aa\socialmedia\dao\daoimpl\Student_DAO_Imp.class
-com\aa\socialmedia\service\serviceimpl\Student_Service_Imp.class
-com\aa\socialmedia\Config.class
-com\aa\socialmedia\StudentApplication.class
-com\aa\socialmedia\model\Student.class
-com\aa\socialmedia\service\Student_Service.class
-com\aa\socialmedia\dao\Student_DAO.class
