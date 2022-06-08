@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class ValidationFields {
 
-	private Integer Id;
-	private String studentName;
-	private String studentEmail;
-	private String studentBranch;
+	private String name;
 
+	private String expression;
 }

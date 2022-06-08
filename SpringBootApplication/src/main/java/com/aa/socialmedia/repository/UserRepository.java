@@ -1,14 +1,9 @@
 package com.aa.socialmedia.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.aa.socialmedia.model.User;
+import com.aa.socialmedia.dao.UserEntity;
 
+public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
-public interface UserRepository extends CrudRepository<User, Integer> {
-
-  
 }

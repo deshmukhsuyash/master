@@ -1,17 +1,20 @@
 package com.aa.socialmedia.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+@Builder
+public class ValidationRequest {
 
-	private Integer Id;
-	private String studentName;
-	private String studentEmail;
-	private String studentBranch;
+	private Person person;
+
+	private List<ValidationFields> fields;
 
 }

@@ -2,15 +2,18 @@ package com.aa.socialmedia.service;
 
 import java.util.List;
 
-import com.aa.socialmedia.model.Inovoice;
-import com.aa.socialmedia.model.Student;
+import com.aa.socialmedia.dao.StudentEntity;
 
 public interface StudentService {
 
-	public Student getStudentByID(Student student);
-	public void saveStudent(Student student);
-	public List<Student> getStudents();
-	public void deleteStudent(Student student);
-	public void updateStudent(Student student);
-	
+	public StudentEntity getStudentByID(StudentEntity student);
+
+	public void saveStudent(StudentEntity student);
+
+	public List<StudentEntity> getStudents();
+
+	public void deleteStudent(StudentEntity student);
+
+	public void updateStudent(StudentEntity student);
+
 }

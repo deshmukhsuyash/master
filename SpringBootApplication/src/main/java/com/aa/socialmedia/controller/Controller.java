@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aa.socialmedia.model.Inovoice;
-import com.aa.socialmedia.service.User_Inovoice_Service;
+import com.aa.socialmedia.model.Student;
+import com.aa.socialmedia.service.Student_Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,38 +24,40 @@ import org.slf4j.LoggerFactory;
 public class Controller {
 	
 	private static final Logger log = LoggerFactory.getLogger(Controller.class);
-
-	
 	@Autowired
-	private User_Inovoice_Service inovoiceservice;
+	private Student_Service studentservice;
 	
-	
-	@GetMapping("inovoice-list")
-	public List<Inovoice> allinovoices() {
-		  log.info("this is a info message");
-		  log.warn("this is a warn message");
-		  log.error("this is a error message");
-		 return inovoiceservice.getInovoices();
-	}
-	
-	
-	@PostMapping("save-inovoice")
-	public void saveInovoice(@RequestBody Inovoice inovoice) {
-		 inovoiceservice.saveInovoices(inovoice);
+	@PostMapping("save-student")
+	public boolean saveStudent(@RequestBody Student student) {
+		 return studentservice.saveStudent(student);
 		
 	}
 	
-	@DeleteMapping("/delete-inovoice/{inovoice_number}")
-	public void deleteInovoice(@PathVariable("inovoice_number") int inovoice_number,Inovoice inovoice) {
-		 log.info("deleteInovoice");
-		inovoice.setInovoice_number(inovoice_number);
-		inovoiceservice.deleteInovoices(inovoice);
-	}
-
-	@PostMapping("update-inovoice/{inovoice_id}")
-	public void updateInovoice(@RequestBody Inovoice inovoice,@PathVariable("inovoice_id") int inovoice_number) {
-		 inovoice.setInovoice_number(inovoice_number);
-		 inovoiceservice.updateInovoices(inovoice);
+	@GetMapping("students-list")
+	public List<Student> allstudents() {
+		  log.info("this is a info message");
+		  log.warn("this is a warn message");
+		  log.error("this is a error message");
+		 return studentservice.getStudents();
 	}
 	
+	
+	@DeleteMapping("delete-student/{student_id}")
+	public boolean deleteStudent(@PathVariable("student_id") int student_id,Student student) {
+		student.setStudent_id(student_id);
+		return studentservice.deleteStudent(student);
+	}
+
+	@GetMapping("student/{student_id}")
+	public List<Student> allstudentByID(@PathVariable("student_id") int student_id,Student student) {
+		 student.setStudent_id(student_id);
+		 return studentservice.getStudentByID(student);
+		
+	}
+	
+	@PostMapping("update-student/{student_id}")
+	public boolean updateStudent(@RequestBody Student student,@PathVariable("student_id") int student_id) {
+		student.setStudent_id(student_id);
+		return studentservice.updateStudent(student);
+	}
 }
