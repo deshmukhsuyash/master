@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,12 +18,13 @@ import com.aa.socialmedia.dao.StudentEntity;
 import com.aa.socialmedia.model.Person;
 import com.aa.socialmedia.service.StudentService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api")
+@Slf4j
 public class StudentController {
-
-	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
 
 	@Autowired
 	private StudentService studentservice;
@@ -39,7 +38,7 @@ public class StudentController {
 
 	@GetMapping("students-list")
 	public List<StudentEntity> allstudents() {
-		log.info("allstudents");
+		log.warn("allstudents");
 		return studentservice.getStudents();
 	}
 
