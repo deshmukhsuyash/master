@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aa.socialmedia.dao.StudentEntity;
-import com.aa.socialmedia.model.Person;
+import com.aa.socialmedia.model.Employee;
+import com.aa.socialmedia.model.Student;
 import com.aa.socialmedia.service.StudentService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "/api")
 @Slf4j
 public class StudentController {
@@ -43,17 +44,16 @@ public class StudentController {
 	}
 
 	@DeleteMapping("delete-student/{studentId}")
-	public void deleteStudent(@PathVariable("studentId") int studentId, StudentEntity student) {
+	public void deleteStudent(@PathVariable("studentId") Integer studentId, StudentEntity student) {
 		log.info("deleteStudent");
 		student.setStudentId(studentId);
 		studentservice.deleteStudent(student);
 	}
 
 	@GetMapping("student/{studentId}")
-	public StudentEntity allstudentByID(@PathVariable("studentId") int studentId, StudentEntity student) {
+	public Student allstudentByID(@PathVariable("studentId") Integer studentId) {
 		log.info("allstudentByID");
-		student.setStudentId(studentId);
-		return studentservice.getStudentByID(student);
+		return studentservice.getStudentByID(studentId);
 
 	}
 
@@ -64,10 +64,10 @@ public class StudentController {
 		studentservice.updateStudent(student);
 	}
 
-	@PostMapping("validate-student")
-	public Person create(@Valid @RequestBody Person person) {
+	@PostMapping("validate-employee")
+	public Employee create(@Valid @RequestBody Employee employee) {
 
-		return person;
+		return employee;
 
 	}
 }

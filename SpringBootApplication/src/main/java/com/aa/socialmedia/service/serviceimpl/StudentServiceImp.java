@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aa.socialmedia.dao.StudentEntity;
+import com.aa.socialmedia.model.Student;
 import com.aa.socialmedia.repository.StudentRepository;
 import com.aa.socialmedia.service.StudentService;
+import com.aa.socialmedia.util.MapperUtil;
 
 @Service
 @Transactional
@@ -21,15 +23,18 @@ public class StudentServiceImp implements StudentService {
 	@Autowired
 	StudentRepository repository;
 
+	@Autowired
+	public MapperUtil util;
+
 	@Override
-	public StudentEntity getStudentByID(StudentEntity student) {
-		StudentEntity result = repository.findById(student.getStudentId()).get();
+	public Student getStudentByID(Integer studentId) {
+		StudentEntity result = repository.findById(studentId).get();
 
 		if (result == null) {
 			result = new StudentEntity();
 		}
+		return util.convert(result, Student.class);
 
-		return result;
 	}
 
 	@Override

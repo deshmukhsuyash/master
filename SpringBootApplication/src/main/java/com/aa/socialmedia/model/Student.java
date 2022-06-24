@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Student {
 
-	private Integer Id;
 	private String studentName;
 	private String studentEmail;
 	private String studentBranch;

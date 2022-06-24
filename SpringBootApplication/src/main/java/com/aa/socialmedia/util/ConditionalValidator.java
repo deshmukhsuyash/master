@@ -14,24 +14,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ConditionalValidator implements ConstraintValidator<Conditional, Object> {
 
-	// private String selected;
 	private String[] required;
 	private String message;
-	// private String[] values;
 
 	@Override
 	public void initialize(Conditional requiredIfChecked) {
-		// selected = requiredIfChecked.selected();
 		required = requiredIfChecked.required();
 		message = requiredIfChecked.message();
-		// values = requiredIfChecked.values();
 	}
 
 	@Override
 	public boolean isValid(Object object, ConstraintValidatorContext context) {
 		Boolean valid = true;
 		try {
-			// Object checkedValue = BeanUtils.getProperty(object, selected);
 			for (String propName : required) {
 				Object requiredValue = BeanUtils.getProperty(object, propName);
 				valid = requiredValue != null && !isEmpty(requiredValue);

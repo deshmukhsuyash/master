@@ -1,0 +1,9 @@
+2022-06-23 21:52:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "STUDENT" not found; SQL statement:
+select studentent0_.studentId as studenti1_3_, studentent0_.studentBranch as studentb2_3_, studentent0_.studentEmail as studente3_3_, studentent0_.studentName as studentn4_3_ from student studentent0_ [42102-200]
+2022-06-23 21:54:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "STUDENT" not found; SQL statement:
+select studentent0_.studentId as studenti1_3_, studentent0_.studentBranch as studentb2_3_, studentent0_.studentEmail as studente3_3_, studentent0_.studentName as studentn4_3_ from student studentent0_ [42102-200]
+2022-06-23 21:55:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "INOVOICE_DETAIL" not found; SQL statement:
+select inovoiceen0_.inovoice_number as inovoice1_1_, inovoiceen0_.bill_date as bill_dat2_1_, inovoiceen0_.bill_type as bill_typ3_1_, inovoiceen0_.inovoice_total as inovoice4_1_ from inovoice_detail inovoiceen0_ [42102-200]

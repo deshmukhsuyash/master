@@ -3,10 +3,11 @@ package com.aa.socialmedia.service;
 import java.util.List;
 
 import com.aa.socialmedia.dao.StudentEntity;
+import com.aa.socialmedia.model.Student;
 
 public interface StudentService {
 
-	public StudentEntity getStudentByID(StudentEntity student);
+	public Student getStudentByID(Integer studentId);
 
 	public void saveStudent(StudentEntity student);
 
