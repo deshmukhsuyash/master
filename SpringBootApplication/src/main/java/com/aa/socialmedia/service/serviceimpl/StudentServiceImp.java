@@ -1,10 +1,13 @@
 package com.aa.socialmedia.service.serviceimpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +24,7 @@ public class StudentServiceImp implements StudentService {
 	private static final Logger log = LoggerFactory.getLogger(StudentServiceImp.class);
 
 	@Autowired
-	StudentRepository repository;
+	public StudentRepository repository;
 
 	@Autowired
 	public MapperUtil util;
@@ -38,8 +41,16 @@ public class StudentServiceImp implements StudentService {
 	}
 
 	@Override
-	public List<StudentEntity> getStudents() {
-		return (List<StudentEntity>) repository.findAll();
+	public List<Student> getStudents() {
+		List<StudentEntity> resultList = repository.findAll();
+		return resultList.stream().map(x -> util.convert(x, Student.class)).collect(Collectors.toList());
+
+	}
+
+	@Override
+	public Page<Student> allStudentsPage(Pageable page) {
+		Page<StudentEntity> resultList = repository.findAll(page);
+		return util.mapEntityPageIntoModelPage(resultList, Student.class);
 
 	}
 

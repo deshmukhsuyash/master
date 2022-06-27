@@ -26,7 +26,7 @@ public class UserInovoiceServiceImpl implements UserInovoiceService {
 	private static final Logger log = LoggerFactory.getLogger(UserInovoiceServiceImpl.class);
 
 	@Autowired
-	InovoiceRepository repository;
+	public InovoiceRepository repository;
 
 	@Override
 	public List<InovoiceEntity> getInovoices() {

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/student")
 @Slf4j
 public class StudentController {
 
@@ -38,9 +40,15 @@ public class StudentController {
 	}
 
 	@GetMapping("students-list")
-	public List<StudentEntity> allstudents() {
+	public List<Student> allstudents() {
 		log.warn("allstudents");
 		return studentservice.getStudents();
+	}
+
+	@GetMapping("students-page-list")
+	public Page<Student> allstudentsPage(Pageable page) {
+		log.warn("allstudents");
+		return studentservice.allStudentsPage(page);
 	}
 
 	@DeleteMapping("delete-student/{studentId}")
@@ -50,7 +58,7 @@ public class StudentController {
 		studentservice.deleteStudent(student);
 	}
 
-	@GetMapping("student/{studentId}")
+	@GetMapping("{studentId}")
 	public Student allstudentByID(@PathVariable("studentId") Integer studentId) {
 		log.info("allstudentByID");
 		return studentservice.getStudentByID(studentId);
