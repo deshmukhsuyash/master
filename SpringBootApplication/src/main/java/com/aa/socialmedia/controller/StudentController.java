@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aa.socialmedia.dao.StudentEntity;
 import com.aa.socialmedia.model.Employee;
@@ -34,6 +36,13 @@ public class StudentController {
 
 	@PostMapping("save-student")
 	public void saveStudent(@RequestBody StudentEntity student) {
+		log.info("saveStudent");
+		studentservice.saveStudent(student);
+
+	}
+
+	@PostMapping("save-studentfile")
+	public void saveStudentFile(@RequestPart("file") MultipartFile file, @RequestBody StudentEntity student) {
 		log.info("saveStudent");
 		studentservice.saveStudent(student);
 
