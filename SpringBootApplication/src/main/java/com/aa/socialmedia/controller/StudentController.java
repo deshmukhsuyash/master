@@ -7,6 +7,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aa.socialmedia.dao.StudentEntity;
 import com.aa.socialmedia.model.Employee;
+import com.aa.socialmedia.model.FileRequest;
 import com.aa.socialmedia.model.Student;
 import com.aa.socialmedia.service.StudentService;
 
@@ -42,9 +46,10 @@ public class StudentController {
 	}
 
 	@PostMapping("save-studentfile")
-	public void saveStudentFile(@RequestPart("file") MultipartFile file, @RequestBody StudentEntity student) {
+	public StudentEntity saveStudentFile(@RequestPart("file") MultipartFile file,
+			@RequestPart("data") StudentEntity student) {
 		log.info("saveStudent");
-		studentservice.saveStudent(student);
+		return studentservice.saveStudentFile(file, student);
 
 	}
 
@@ -68,9 +73,19 @@ public class StudentController {
 	}
 
 	@GetMapping("{studentId}")
-	public Student allstudentByID(@PathVariable("studentId") Integer studentId) {
+	public Student getstudentByID(@PathVariable("studentId") Integer studentId) {
 		log.info("allstudentByID");
 		return studentservice.getStudentByID(studentId);
+
+	}
+
+	@GetMapping("downloadFile/{studentId}")
+	public HttpEntity<byte[]> downloadStudentFile(@PathVariable("studentId") Integer studentId) {
+		log.info("allstudentByID");
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		FileRequest filereq = studentservice.getStudentFile(studentId);
+		return new HttpEntity<>(filereq.getFileDetails(), headers);
 
 	}
 

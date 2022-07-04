@@ -1,5 +1,6 @@
 package com.aa.socialmedia.service.serviceimpl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,8 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aa.socialmedia.dao.StudentEntity;
+import com.aa.socialmedia.model.FileRequest;
 import com.aa.socialmedia.model.Student;
 import com.aa.socialmedia.repository.StudentRepository;
 import com.aa.socialmedia.service.StudentService;
@@ -41,6 +44,17 @@ public class StudentServiceImp implements StudentService {
 	}
 
 	@Override
+	public FileRequest getStudentFile(Integer studentId) {
+		StudentEntity result = repository.findById(studentId).get();
+
+		if (result == null) {
+			result = new StudentEntity();
+		}
+		return util.convert(result, FileRequest.class);
+
+	}
+
+	@Override
 	public List<Student> getStudents() {
 		List<StudentEntity> resultList = repository.findAll();
 		return resultList.stream().map(x -> util.convert(x, Student.class)).collect(Collectors.toList());
@@ -55,8 +69,18 @@ public class StudentServiceImp implements StudentService {
 	}
 
 	@Override
-	public void saveStudent(StudentEntity student) {
-		repository.save(student);
+	public StudentEntity saveStudent(StudentEntity student) {
+		return repository.save(student);
+	}
+
+	@Override
+	public StudentEntity saveStudentFile(MultipartFile file, StudentEntity student) {
+		try {
+			student.setFileDetails(file.getBytes());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return repository.save(student);
 	}
 
 	@Override
