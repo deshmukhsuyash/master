@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -79,11 +80,19 @@ public class StudentController {
 
 	}
 
+	@GetMapping("get-students/{studentId}")
+	public Page<Student> getAllMatchingStudents(@PathVariable("studentId") Integer studentId, Pageable page) {
+		log.info("allstudentByID");
+		return studentservice.getAllMatchingStudents(page, studentId);
+
+	}
+
 	@GetMapping("downloadFile/{studentId}")
 	public HttpEntity<byte[]> downloadStudentFile(@PathVariable("studentId") Integer studentId) {
 		log.info("allstudentByID");
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		headers.setContentDisposition(ContentDisposition.attachment().filename("Suyash.txt").build());
 		FileRequest filereq = studentservice.getStudentFile(studentId);
 		return new HttpEntity<>(filereq.getFileDetails(), headers);
 

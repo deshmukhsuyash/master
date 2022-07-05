@@ -28,4 +28,6 @@ public interface StudentService {
 
 	public FileRequest getStudentFile(Integer studentId);
 
+	public Page<Student> getAllMatchingStudents(Pageable page, Integer studentId);
+
 }

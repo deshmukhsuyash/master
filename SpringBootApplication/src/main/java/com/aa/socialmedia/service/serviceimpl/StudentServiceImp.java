@@ -44,6 +44,13 @@ public class StudentServiceImp implements StudentService {
 	}
 
 	@Override
+	public Page<Student> getAllMatchingStudents(Pageable page, Integer studentId) {
+		Page<StudentEntity> resultList = repository.findByStudentIdGreaterThan(page, studentId);
+		return util.mapEntityPageIntoModelPage(resultList, Student.class);
+
+	}
+
+	@Override
 	public FileRequest getStudentFile(Integer studentId) {
 		StudentEntity result = repository.findById(studentId).get();
 
